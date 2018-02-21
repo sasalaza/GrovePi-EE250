@@ -10,7 +10,7 @@ def Main():
 	essentially loop right back to your machine and look for any process
 	listening in on the port specified."""
 	host = '192.168.1.206'
-	port = 5000
+	port = 9000
 
 	s = socket.socket() #by default, the socket constructor creates an TCP/IPv4 socket
 	s.connect((host,port))
