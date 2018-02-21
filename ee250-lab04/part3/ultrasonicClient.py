@@ -3,6 +3,8 @@ import grovepi
 import sys
 sys.path.append('../../Software/Python')
 
+from grovepi import *
+
 def Main():
 	# Change the host and port as needed. For ports, use a number in the 9000
 	# range.
@@ -38,7 +40,6 @@ def Main():
 		data = data.decode('utf-8')
 		print("Received from server: " + data)
 		dst_port = input("destination port-> ")
-		message = input("message-> ")
 	s.close()
 
 if __name__ == '__main__':
