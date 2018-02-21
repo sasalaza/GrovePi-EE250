@@ -3,7 +3,7 @@ import grovepi
 import sys
 sys.path.append('../../Software/Python')
 
-from grovepi import *
+#from grovepi import *
 
 def Main():
 	# Change the host and port as needed. For ports, use a number in the 9000
@@ -20,12 +20,12 @@ def Main():
 	# UDP is connectionless, so a client does not formally connect to a server
 	# before sending a message.
 	dst_port = input("destination port-> ")
-	message = 0
+	message = ''
 
-	while True:
+	while message != 'q':
 
 		try:
-			message = grovepi.ultrasonicRead(ultrasonic_ranger)
+			message = str(grovepi.ultrasonicRead(ultrasonic_ranger))
 		except TypeError:
 			message = "TypeError"
 		except IOError:
