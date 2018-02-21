@@ -19,7 +19,7 @@ def Process1():
         data, addr = s.recvfrom(1024)
         data = data.decode('utf-8')
         print("Message From: " + str(addr))
-        print("From connected user: " + data)
+        print("Distance: " + data)
         data = data.upper()
         print("Sending: " + data)
         s.sendto(data.encode('utf-8'), addr)
