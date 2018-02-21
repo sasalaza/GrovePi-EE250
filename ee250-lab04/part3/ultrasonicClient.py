@@ -19,7 +19,7 @@ def Main():
 	# SIG,NC,VCC,GND
 	ultrasonic_ranger = 3
 
-    # Change the host and port as needed. For ports, use a number in the 9000
+	# Change the host and port as needed. For ports, use a number in the 9000
     # range.
     host = '192.168.1.169'
     port = 1024
@@ -38,14 +38,14 @@ def Main():
         server = (server_addr, int(dst_port))
 
         while True:
-    		try:
-    			# Read distance value from Ultrasonic
-    			message = (grovepi.ultrasonicRead(ultrasonic_ranger))
+			try:
+				# Read distance value from Ultrasonic
+				message = (grovepi.ultrasonicRead(ultrasonic_ranger))
 
-    		except TypeError:
-    			message = ("Error")
-    		except IOError:
-    			message = ("Error")
+			except TypeError:
+				message = ("Error")
+			except IOError:
+				message = ("Error")
 
         # for UDP, sendto() and recvfrom() are used instead
         s.sendto(message.encode('utf-8'), server)
