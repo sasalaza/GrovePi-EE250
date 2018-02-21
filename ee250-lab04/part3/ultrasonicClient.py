@@ -10,7 +10,7 @@ def Main():
 	# range.
 	ultrasonic_ranger = 3
 	host = '192.168.1.169'
-	port = 1024
+	port = 5001
 
 	server_addr = '192.168.1.206'
 
@@ -20,16 +20,16 @@ def Main():
 	# UDP is connectionless, so a client does not formally connect to a server
 	# before sending a message.
 	dst_port = input("destination port-> ")
-	message = ''
+	message = 0
 
-	while message != 'q':
+	while True:
 
 		try:
-			message = str(grovepi.ultrasonicRead(ultrasonic_ranger))
+			message = grovepi.ultrasonicRead(ultrasonic_ranger)
 		except TypeError:
-			message = "Error"
+			message = "TypeError"
 		except IOError:
-			message = "Error"
+			message = "IOError"
 
 		#tuples are immutable so we need to overwrite the last tuple
 		server = (server_addr, int(dst_port))
