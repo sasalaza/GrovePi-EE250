@@ -17,9 +17,9 @@ def Main():
 
 	# UDP is connectionless, so a client does not formally connect to a server
 	# before sending a message.
-	dst_port = input("destination port-> ")
-	while message != 'q':
+	dst_port = input("destination port->
 	print(grovepi.ultrasonicRead(ultrasonic_ranger))
+	while message != 'q':
 
 		try:
 			message = grovepi.ultrasonicRead(ultrasonic_ranger)
