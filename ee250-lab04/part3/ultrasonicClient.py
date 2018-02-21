@@ -21,13 +21,13 @@ def Main():
 	message = ''
 
 	while message != 'q':
-
-		try:
-			message = str(grovepi.ultrasonicRead(ultrasonic_ranger))
-		except TypeError:
-			message = "Error"
-		except IOError:
-			message = "Error"
+		while True:
+			try:
+				message = str(grovepi.ultrasonicRead(ultrasonic_ranger))
+			except TypeError:
+				message = "Error"
+			except IOError:
+				message = "Error"
 
 		#tuples are immutable so we need to overwrite the last tuple
 		server = (server_addr, int(dst_port))
