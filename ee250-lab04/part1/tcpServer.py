@@ -5,7 +5,7 @@ https://www.youtube.com/watch?v=bTThyxVy7Sk&index=6&list=PL1A2CSdiySGIPxpSlgzsZi
 import socket
 
 def Main():
-    host = '127.0.0.1'
+    host = '192.168.1.206'
     port = 5000
 
     s = socket.socket()

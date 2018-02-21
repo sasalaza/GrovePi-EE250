@@ -9,8 +9,8 @@ def Main():
 	"""127.0.0.1 is the loopback address. Any packets sent to this address will
 	essentially loop right back to your machine and look for any process
 	listening in on the port specified."""
-	host = '192.168.1.206'
-	port = 9000
+	host = '192.168.1.169'
+	port = 9001
 
 	s = socket.socket() #by default, the socket constructor creates an TCP/IPv4 socket
 	s.connect((host,port))
