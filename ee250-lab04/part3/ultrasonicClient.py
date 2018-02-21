@@ -7,10 +7,10 @@ def Main():
     # Change the host and port as needed. For ports, use a number in the 9000
     # range.
 	ultrasonic_ranger = 3
-    host = '127.0.0.1'
+	host = '192.168.1.169'
     port = 1023
 
-    server_addr = '127.0.0.1'
+    server_addr = '192.168.1.206'
 
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind((host,port))
