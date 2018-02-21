@@ -18,6 +18,7 @@ def Main():
 	# UDP is connectionless, so a client does not formally connect to a server
 	# before sending a message.
 	dst_port = input("destination port-> ")
+	message = ''
 
 	while message != 'q':
 
