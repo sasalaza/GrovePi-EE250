@@ -30,7 +30,7 @@ def Main():
 	#print ("Connect the LED to the port labele D4!" )
 
 	host = '192.168.1.169'
-	port = 9001
+	port = 8000
 
 	s = socket.socket()
 	s.bind((host,port))

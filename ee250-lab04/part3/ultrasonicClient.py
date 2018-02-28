@@ -10,7 +10,7 @@ def Main():
 	# range.
 	ultrasonic_ranger = 3
 	host = '192.168.1.169'
-	port = 5001
+	port = 8001
 
 	server_addr = '192.168.1.206'
 
