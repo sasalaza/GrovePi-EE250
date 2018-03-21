@@ -1,10 +1,14 @@
 """EE 250L Lab 07 Skeleton Code
 
 Run rpi_pub_and_sub.py on your Raspberry Pi."""
+import sys
+sys.path.append('../../Software/Python/')
 
 import paho.mqtt.client as mqtt
 import time
 import grovepi
+
+from grovepi import *
 
 ultrasonic_pin = 3
 led_pin = 2
