@@ -52,6 +52,6 @@ if __name__ == '__main__':
 
 		if lis == 'a':
 			client.publish("anrg-pi3/led", "LED_ON")
-		else:
+		elif lis == 'd':
 			client.publish("anrg-pi3/led", "LED_OFF")
 		time.sleep(1)
