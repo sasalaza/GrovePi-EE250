@@ -38,10 +38,10 @@ if __name__ == '__main__':
 
 	while True:
 		try:
-		message = str(grovepi.ultrasonicRead(ultrasonic_pin))
-	except TypeError:
-		message = "TypeError"
-	except IOError:
-		message = "IOError"
-	client.publish("anrg-pi3/ultrasonicRanger", message)
+			message = str(grovepi.ultrasonicRead(ultrasonic_pin))
+		except TypeError:
+			message = "TypeError"
+		except IOError:
+			message = "IOError"
+		client.publish("anrg-pi3/ultrasonicRanger", message)
 		time.sleep(1)
