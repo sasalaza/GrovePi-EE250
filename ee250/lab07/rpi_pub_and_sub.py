@@ -5,10 +5,15 @@ Run rpi_pub_and_sub.py on your Raspberry Pi."""
 import paho.mqtt.client as mqtt
 import time
 
+def custom_callback(client, userdata, message):
+	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
+
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
 
     #subscribe to topics of interest here
+	client.subscribe("anrg-pi3/led")
+	client.message_callback_add("anrg-pi3/led", custom_callback)
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
