@@ -4,9 +4,18 @@ Run rpi_pub_and_sub.py on your Raspberry Pi."""
 
 import paho.mqtt.client as mqtt
 import time
+import grovepi
+
+ultrasonic_pin = 3
+led_pin = 2
 
 def custom_callback(client, userdata, message):
 	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
+
+	if message.topic == "LED_ON":
+		digitalWrite(led_pin, 1)
+	else:
+		digitalWrite(led_pin, 0)
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
@@ -28,7 +37,13 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
-        print("delete this line")
+        try:
+		message = str(grovepi.ultrasonicRead(ultrasonic_pin))
+	except TypeError:
+		message = "TypeError"
+	except IOError:
+		message = "IOError"
+	client.publish("anrg-pi3/ultrasonicRanger", message)
         time.sleep(1)
             
 

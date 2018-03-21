@@ -49,11 +49,12 @@ if __name__ == '__main__':
     client.loop_start()
 
     while True:
-        if lis == 'a':
+ """       if lis == 'a':
 		client.publish("anrg-pi3/led", "LED_ON")
 	else
-		client.publish("anrg-pi3/led", "LED_OFF")
-	print("delete this line")
+		client.publish("anrg-pi3/led", "LED_OFF")"""
+	print(lis)
+	print(type(lis))
         time.sleep(1)
             
 
