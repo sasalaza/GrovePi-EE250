@@ -16,9 +16,9 @@ led_pin = 2
 def custom_callback(client, userdata, message):
 	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
 
-	if message.payload == "LED_ON":
+	if str(message.payload) == "LED_ON":
 		digitalWrite(led_pin, 1)
-	elif message.payload == "LED_OFF":
+	elif str(message.payload) == "LED_OFF":
 		digitalWrite(led_pin, 0)
 
 def on_connect(client, userdata, flags, rc):
