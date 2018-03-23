@@ -9,6 +9,7 @@ import time
 import grovepi
 
 from grovepi import *
+from grove_rgb_lcd import *
 
 ultrasonic_pin = 3
 led_pin = 2
@@ -27,12 +28,31 @@ def custom_callback(client, userdata, message):
 		print("off")
 		digitalWrite(led_pin, 0)
 
+def custom_callback2(client, userdata, message):
+	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
+	print(str(message.payload, "utf-8"))
+	if str(message.payload) == "b\'w\'":
+		print("on")
+		setText("w")
+	elif str(message.payload) == "b\'a\'":
+		print("off")
+		setText("a")
+	elif str(message.payload) == "b\'s\'":
+		print("off")
+		setText("s")
+	elif str(message.payload) == "b\'d\'":
+		print("off")
+		setText("d")
+
 def on_connect(client, userdata, flags, rc):
 	print("Connected to server (i.e., broker) with result code "+str(rc))
 
 	#subscribe to topics of interest here
 	client.subscribe("anrg-pi3/led")
 	client.message_callback_add("anrg-pi3/led", custom_callback)
+	
+	client.subscribe("anrg-pi3/lcd")
+	client.message_callback_add("anrg-pi3/lcd", custom_callback2)
 
 #Default message callback. Please use custom callbacks.
 def on_message(client, userdata, msg):
