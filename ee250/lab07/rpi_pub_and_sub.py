@@ -34,15 +34,19 @@ def custom_callback2(client, userdata, message):
 	if str(message.payload) == "b\'w\'":
 		print("on")
 		setText("w")
+		setRGB(255, 0, 0)
 	elif str(message.payload) == "b\'a\'":
 		print("off")
 		setText("a")
+		setRGB(0, 255, 0)
 	elif str(message.payload) == "b\'s\'":
 		print("off")
 		setText("s")
+		setRGB(0, 0, 255)
 	elif str(message.payload) == "b\'d\'":
 		print("off")
 		setText("d")
+		setRGB(255, 255, 255)
 
 def on_connect(client, userdata, flags, rc):
 	print("Connected to server (i.e., broker) with result code "+str(rc))
