@@ -13,6 +13,8 @@ from grovepi import *
 ultrasonic_pin = 3
 led_pin = 2
 
+grovepi.pinMode(led_pin, "OUTPUT")
+
 def custom_callback(client, userdata, message):
 	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
 
