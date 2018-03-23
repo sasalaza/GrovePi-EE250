@@ -17,7 +17,7 @@ pinMode(led_pin, "OUTPUT")
 
 def custom_callback(client, userdata, message):
 	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
-	print(message.payload)
+	print(str(message.payload))
 	if str(message.payload) == "LED_ON":
 		print("on")
 		#digitalWrite(led_pin, "HIGH")
