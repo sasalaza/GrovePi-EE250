@@ -8,6 +8,9 @@ import time
 def custom_callback(client, userdata, message):
 	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
 
+def custom_callback2(client, userdata, message):
+	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
+
 def on_connect(client, userdata, flags, rc):
 	print("Connected to server (i.e., broker) with result code "+str(rc))
 
@@ -15,7 +18,7 @@ def on_connect(client, userdata, flags, rc):
 	client.message_callback_add("anrg-pi3/ultrasonicRanger", custom_callback)
 
 	client.subscribe("anrg-pi3/button")
-	client.message_callback_add("anrg-pi3/button", custom_callback)
+	client.message_callback_add("anrg-pi3/button", custom_callback2)
 	#subscribe to the ultrasonic ranger topic here
 
 #Default message callback. Please use custom callbacks.

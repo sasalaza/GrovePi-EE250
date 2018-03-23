@@ -55,6 +55,6 @@ if __name__ == '__main__':
 			message = "IOError"
 		client.publish("anrg-pi3/ultrasonicRanger", message)
 		buttonState = digitalRead(button)
-		if buttonState == "HIGH":
-			client.publish("anrg-pi3/button", "Button pressed!")
+		if buttonState == 1:
+			print("anrg-pi3/button", "Button pressed!")
 		time.sleep(1)
