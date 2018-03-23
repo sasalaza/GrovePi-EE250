@@ -22,7 +22,7 @@ def custom_callback(client, userdata, message):
 		print("on")
 		digitalWrite(led_pin, 1)
 	elif str(message.payload) == "b\'LED_OFF\'":
-		print("low")
+		print("off")
 		digitalWrite(led_pin, 0)
 
 def on_connect(client, userdata, flags, rc):
