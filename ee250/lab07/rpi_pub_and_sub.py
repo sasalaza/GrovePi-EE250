@@ -12,8 +12,10 @@ from grovepi import *
 
 ultrasonic_pin = 3
 led_pin = 2
+button = 8
 
 pinMode(led_pin, "OUTPUT")
+pinMode(button, "INPUT")
 
 def custom_callback(client, userdata, message):
 	print("custom_callback: " + message.topic + " " + "\"" + str(message.payload, "utf-8") + "\"")
@@ -52,4 +54,7 @@ if __name__ == '__main__':
 		except IOError:
 			message = "IOError"
 		client.publish("anrg-pi3/ultrasonicRanger", message)
+		buttonState = digitalRead(button)
+		if buttonState == "HIGH":
+			client.publish("anrg-pi3/button", "Button pressed!")
 		time.sleep(1)
