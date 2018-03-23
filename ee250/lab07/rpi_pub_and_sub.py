@@ -56,5 +56,5 @@ if __name__ == '__main__':
 		client.publish("anrg-pi3/ultrasonicRanger", message)
 		buttonState = digitalRead(button)
 		if buttonState == 1:
-			print("anrg-pi3/button", "Button pressed!")
+			client.publish("anrg-pi3/button", "Button pressed!")
 		time.sleep(1)
