@@ -97,7 +97,27 @@ if __name__ == '__main__':
 
 		#print(average1)
 		#print(average2)
+		
+		#sum1 = average1[len(average1)-1]-average1[0]
+		#sum2 = average2[len(average2)-1]-average2[0]
+		#print(str(sum1)+","+str(sum2))
 
+		for i in range(0, len(average1)-1):
+			difference1.append(int(average1[len(average1)-1-i]-average1[len(average1)-1-i-1]))
+			difference2.append(int(average2[len(average2)-1-i]-average2[len(average2)-1-i-1]))		
+		difference1 = difference1[-SUB_LIST_LENGTH:]
+		difference2 = difference2[-SUB_LIST_LENGTH:]
+		
+		for i in range(0, len(difference1)):
+			sum1 = sum1 + difference1[i]
+			sum2 = sum2 + difference2[i]
+
+		sum1 = sum1/SUB_LIST_LENGTH
+		sum2 = sum2/SUB_LIST_LENGTH
+
+		print(str(sum1)+","+str(sum2))	
+
+		"""
 		for i in range(0,len(average1)-1):
 			difference1.append(int(average1[i]-average1[i+1]))
 			sum1 = sum1 + difference1[i]
@@ -120,4 +140,5 @@ if __name__ == '__main__':
 				print("moving right")
 			elif second_diff<=-50:
 				print("moving left")
+		"""
 		time.sleep(1)
