@@ -1,5 +1,8 @@
 import paho.mqtt.client as mqtt
 import time
+import requests
+import json
+from datetime import datetime 
 
 # MQTT variables
 broker_hostname = "eclipse.usc.edu"
@@ -54,6 +57,14 @@ if __name__ == '__main__':
 	client.on_message = on_message
 	client.connect(broker_hostname, broker_port, 60)
 	client.loop_start()
+	hdr = {
+	    'Content-Type': 'application/json',
+	    'Authoerization': None
+	}
+	payload = {
+	    'time': str(datetime.now()),
+	    'event': "None"
+	}
 	time.sleep(5)
 	while True:
 		""" You have two lists, ranger1_dist and ranger2_dist, which hold a window
@@ -74,6 +85,7 @@ if __name__ == '__main__':
 		temp2 = ranger2_dist[-10:]
 
 		#print(temp1)
+		
 		#print(temp2)
 
 		for i in range(0,len(temp1)):
@@ -87,7 +99,7 @@ if __name__ == '__main__':
 		sum2 = sum2/SUB_LIST_LENGTH
 
 		#print(str(sum1)+","+str(sum2))
-
+		
 		average1.append(sum1)
 		average2.append(sum2)
 		sum1 = 0
@@ -95,8 +107,14 @@ if __name__ == '__main__':
 		average1 = average1[-SUB_LIST_LENGTH:]
 		average2 = average2[-SUB_LIST_LENGTH:]
 
-		#print(average1)
-		#print(average2)
+		print(average1)
+		
+		print(average2)
+		
+		payload['event'] = "Average"
+		response = requests.post("http://0.0.0.0:5000/post-event", headers = hdr, data = json.dumps(payload))
+		print(response.json())
+		"""
 		
 		#sum1 = average1[len(average1)-1]-average1[0]
 		#sum2 = average2[len(average2)-1]-average2[0]
@@ -117,7 +135,7 @@ if __name__ == '__main__':
 
 		print(str(sum1)+","+str(sum2))	
 
-		"""
+		
 		for i in range(0,len(average1)-1):
 			difference1.append(int(average1[i]-average1[i+1]))
 			sum1 = sum1 + difference1[i]
