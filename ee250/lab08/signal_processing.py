@@ -79,6 +79,7 @@ if __name__ == '__main__':
 
 		#print("ranger1: " + str(ranger1_dist[-1:]) + ", ranger2: " +
 		#    str(ranger2_dist[-1:]))
+		tempstring = ""
 		sum1 = 0
 		sum2 = 0
 		temp1 = ranger1_dist[-10:]
@@ -107,13 +108,34 @@ if __name__ == '__main__':
 		average1 = average1[-SUB_LIST_LENGTH:]
 		average2 = average2[-SUB_LIST_LENGTH:]
 
-		print(average1)
-		
-		print(average2)
-		
-		payload['event'] = "Average"
-		response = requests.post("http://0.0.0.0:5000/post-event", headers = hdr, data = json.dumps(payload))
-		print(response.json())
+		sum1 = (average1[len(average1)-1]-average1[0])/(SUB_LIST_LENGTH-1)
+		sum2 = (average2[len(average2)-1]-average2[0])/(SUB_LIST_LENGTH-1)
+
+		difference1.append(sum1)
+		difference2.append(sum2)
+		sum1 = 0
+		sum2 = 0
+		if len(difference1) >= MAX_LIST_LENGTH:
+			for i in range(0,len(difference1)):
+				sum1 = sum1 + difference1[i]
+				sum2 = sum2 + difference2[i]
+			sum1 = sum1/len(difference1)
+			sum2 = sum2/len(difference2)
+			if abs(sum1)>=abs(sum2)-1 or abs(sum1)<=abs(sum2)+1:
+				tempstring = "Still"
+			elif sum1 < sum2:
+				tempstring = "Moving Right"
+			elif sum2 > sum1:
+				tempstring = "Moving Left"
+			difference1[:] = []
+			difference2[:] = []
+
+		#print(average1)
+		#print(average2)
+		if tempstring != "":
+			payload['event'] = "Average"
+			response = requests.post("http://0.0.0.0:5000/post-event", headers = hdr, data = json.dumps(payload))
+			print(response.json())
 		"""
 		
 		#sum1 = average1[len(average1)-1]-average1[0]
