@@ -82,6 +82,8 @@ if __name__ == '__main__':
 		sum2 = sum2 + temp2[i]
 	threshold1 = sum1/SUB_LIST_LENGTH
 	threshold2 = sum2/SUB_LIST_LENGTH
+	print("Threshold1: " + str(threshold1))
+	print("Threshold2: " + str(threshold2))
 	"""
 	
 	while True:
