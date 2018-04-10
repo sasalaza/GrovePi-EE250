@@ -23,6 +23,8 @@ difference1 = []
 difference2 = []
 temp1 = []
 temp2 = []
+set1 = []
+set2 = []
 differencelist = [0, 0]
 
 def ranger1_callback(client, userdata, msg):
@@ -65,7 +67,23 @@ if __name__ == '__main__':
 	    'time': str(datetime.now()),
 	    'event': "None"
 	}
-	time.sleep(5)
+	time.sleep(2)
+	"""
+	set1 = ranger1_dist[-10:]
+	set2 = ranger2_dist[-10:]
+	sum1 = 0
+	sum2 = 0
+	for i in range(0,len(temp1)):
+		if temp1[i] >= 125:
+			temp1[i]=125
+		if temp2[i] >= 125:
+			temp2[i]=125
+		sum1 = sum1 + temp1[i]
+		sum2 = sum2 + temp2[i]
+	threshold1 = sum1/SUB_LIST_LENGTH
+	threshold2 = sum2/SUB_LIST_LENGTH
+	"""
+	
 	while True:
 		""" You have two lists, ranger1_dist and ranger2_dist, which hold a window
 		of the past MAX_LIST_LENGTH samples published by ultrasonic ranger 1
@@ -181,4 +199,4 @@ if __name__ == '__main__':
 			elif second_diff<=-50:
 				print("moving left")
 		"""
-		time.sleep(1)
+		time.sleep(0.2)
