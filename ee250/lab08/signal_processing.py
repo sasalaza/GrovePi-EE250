@@ -166,10 +166,17 @@ if __name__ == '__main__':
 			string2 = ""
 			difference1[:] = []
 			difference2[:] = []
-		print(tempstring)
 		
-		if string == "" and string2 == "":
-			
+		if (difference1[-1] > 20 or difference2[-1] > 20) and (string == "" or string2 == ""):
+			tempstring = "Still"
+			if sum1 > sum2 - 20 and sum1 < sum2+20:
+				tempstring = tempstring + "-Middle"
+			elif sum1 > sum2:
+				tempstring = tempstring + "-Left"
+			else:
+				tempstring = tempstring + "-Right"
+		if tempstring != "":
+			print(tempstring)	
 		"""
 		sum1 = (average1[len(average1)-1]-average1[0])/(SUB_LIST_LENGTH-1)
 		sum2 = (average2[len(average2)-1]-average2[0])/(SUB_LIST_LENGTH-1)
