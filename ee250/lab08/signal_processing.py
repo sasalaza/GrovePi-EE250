@@ -21,6 +21,8 @@ average1 = []
 average2 = []
 difference1 = []
 difference2 = []
+movingdiff1 = []
+movingdiff2 = []
 temp1 = []
 temp2 = []
 set1 = []
@@ -127,15 +129,16 @@ if __name__ == '__main__':
 		average2.append(sum2)
 		difference1.append(int(threshold1-sum1))
 		difference2.append(int(threshold2-sum2))
-		sum1 = 0
-		sum2 = 0
+
 		average1 = average1[-SUB_LIST_LENGTH:]
 		average2 = average2[-SUB_LIST_LENGTH:]
 		difference1 = difference1[-SUB_LIST_LENGTH:]
 		difference2 = difference2[-SUB_LIST_LENGTH:]
+		
 		#print(difference1)
 		#print(difference2)
-	
+		sum1 = 0
+		sum2 = 0
 		for i in range(0,len(difference1)-1):
 			if difference1[i] > 20 and difference1[i]>sum1:
 				sum1 = difference1[i]
@@ -165,6 +168,8 @@ if __name__ == '__main__':
 			difference2[:] = []
 		print(tempstring)
 		
+		if string == "" and string2 == "":
+			
 		"""
 		sum1 = (average1[len(average1)-1]-average1[0])/(SUB_LIST_LENGTH-1)
 		sum2 = (average2[len(average2)-1]-average2[0])/(SUB_LIST_LENGTH-1)
