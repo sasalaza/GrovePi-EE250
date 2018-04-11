@@ -166,15 +166,18 @@ if __name__ == '__main__':
 			string2 = ""
 			difference1[:] = []
 			difference2[:] = []
-		
-		if (difference1[-1] > 20 or difference2[-1] > 20) and (string == "" or string2 == ""):
-			tempstring = "Still"
-			if sum1 > sum2 - 20 and sum1 < sum2+20:
-				tempstring = tempstring + "-Middle"
-			elif sum1 > sum2:
-				tempstring = tempstring + "-Left"
-			else:
-				tempstring = tempstring + "-Right"
+
+		if len(difference1)>0:
+			mov_diff1 = (average1[-1] - average1[0])/len(average1)
+			mov_diff2 = (average2[-1] - average2[0])/len(average2)
+			if (difference1[-1] > 20 or difference2[-1] > 20) and (string1 == "" or string2 == "") and ((mov_diff1 >5 and mov_diff1<10) or (mov_diff2>5 and mov_diff2 <10)):
+				tempstring = "Still"
+				if sum1 > sum2 - 20 and sum1 < sum2+20:
+					tempstring = tempstring + "-Middle"
+				elif sum1 > sum2:
+					tempstring = tempstring + "-Left"
+				else:
+					tempstring = tempstring + "-Right"
 		if tempstring != "":
 			print(tempstring)	
 		"""
@@ -202,12 +205,10 @@ if __name__ == '__main__':
 		"""
 		#print(average1)
 		#print(average2)
-		"""
-		if tempstring != "":
-			payload['event'] = tempstring
-			response = requests.post("http://0.0.0.0:5000/post-event", headers = hdr, data = json.dumps(payload))
-			print(response.json())
-		"""	
+		#if tempstring != "":
+		#	payload['event'] = tempstring
+		#	response = requests.post("http://0.0.0.0:5000/post-event", headers = hdr, data = json.dumps(payload))
+		#	print(response.json())	
 		"""
 		#sum1 = average1[len(average1)-1]-average1[0]
 		#sum2 = average2[len(average2)-1]-average2[0]
