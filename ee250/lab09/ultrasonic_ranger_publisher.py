@@ -1,7 +1,5 @@
 import paho.mqtt.client	as mqtt
-import argparse
 import time
-
 import sys
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are able to successfully `import grovepi`
@@ -11,8 +9,8 @@ if TEST:
 	print("Test Mode")
 else:
 	import	grovepi
-	from grovepi import *
-	from grove_rgb_lcd import *
+	#from grovepi import *
+	#from grove_rgb_lcd import *
 
 # Determines which digital port	the	ultrasonic ranger is plugged into (e.g.	a 
 # value	of 4 would mean	port D4)
@@ -28,8 +26,20 @@ lcd_topic = "anrg-pi15/lcd"
 temp_topic = "anrg-pi15/temp"
 hum_topic = "anrg-pi15/hum"
 
+def led_callback(client, userdata, msg):
+	global power_stat = msg.payload
+	print(power_stat)
+
+def lcd_callback(client, userdata, msg):
+	global mymessage = msg.payload
+	print(mymessage)
+
 def	on_connect(client, userdata, flags,	rc):
 	print("Connected to server	(i.e., broker) with	result code	"+str(rc))
+	client.subscribe(led_topic)
+	client.message_callback_add(led_topic, led_callback)
+	client.subscribe(lcd_topic)
+	client.message_callback_add(lcd_topic, lcd_callback)
 
 def	on_message(client, userdata, msg):
 	print("on_message:	" +	msg.topic +	" "	+ str(msg.payload, "utf-8"))
@@ -50,3 +60,4 @@ if __name__	== '__main__':
 		print(t+"/t"+h)
 		client.publish(temp_topic,t)
 		client.publish(hum_topic,h)
+		time.sleep(1)
