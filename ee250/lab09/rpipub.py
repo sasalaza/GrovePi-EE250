@@ -42,6 +42,7 @@ def	on_connect(client, userdata, flags,	rc):
 def	on_message(client, userdata, msg):
 	print("on_message:	" +	msg.topic +	" "	+ str(msg.payload, "utf-8"))
 
+	
 if __name__	== '__main__':
 
 	client	= mqtt.Client()
