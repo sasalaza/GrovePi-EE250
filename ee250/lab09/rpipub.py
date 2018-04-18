@@ -26,16 +26,19 @@ hum_topic = "anrg-pi15/hum"
 
 def led_callback(client, userdata, msg):
 	global power_stat
+	"""
 	if digitalRead(led_port) == 1:
 		digitalWrite(led_port, 0)
 	else:
 		digitalWrite(led_port, 1)
+	"""
 		
 
 def lcd_callback(client, userdata, msg):
 	global mymessage
 	mymessage = msg.payload[2:]
-	setText(mymessage)
+	print(mymessage)
+	#setText(mymessage)
 	setRGB(255,255,255)
 
 def	on_connect(client, userdata, flags,	rc):
