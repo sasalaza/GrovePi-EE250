@@ -37,7 +37,7 @@ def led_callback(client, userdata, msg):
 def lcd_callback(client, userdata, msg):
 	global mymessage
 	mymessage = msg.payload
-	setText(str(mymessage)[2:])
+	setText(str(mymessage)[2:-1])
 	setRGB(255,255,255)
 
 def	on_connect(client, userdata, flags,	rc):
