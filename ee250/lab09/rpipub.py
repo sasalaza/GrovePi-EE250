@@ -14,7 +14,7 @@ led_port = 3
 temphum_port = 2
 lcd_port = 7
 
-#pinMode(led_port, "OUTPUT")
+pinMode(led_port, "OUTPUT")
 
 mqtt_broker_hostname = "eclipse.usc.edu"
 mqtt_broker_port = 11000
@@ -27,18 +27,17 @@ hum_topic = "anrg-pi15/hum"
 def led_callback(client, userdata, msg):
 	global power_stat
 	print("LED")
-	"""
+
 	if digitalRead(led_port) == 1:
 		digitalWrite(led_port, 0)
 	else:
 		digitalWrite(led_port, 1)
-	"""
 		
 
 def lcd_callback(client, userdata, msg):
 	global mymessage
 	mymessage = msg.payload
-	setText(str(mymessage[2:]))
+	setText(str(mymessage)[2:])
 	setRGB(255,255,255)
 
 def	on_connect(client, userdata, flags,	rc):
