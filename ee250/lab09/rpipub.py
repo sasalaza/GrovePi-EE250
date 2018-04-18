@@ -1,3 +1,5 @@
+#Rajan Paul and Sara Salazar
+#We could not get the LED mqtt to work properly, but Jason this was fine due to bugs with p2Ux
 import paho.mqtt.client	as mqtt
 import time
 import sys
