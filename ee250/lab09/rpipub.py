@@ -62,8 +62,8 @@ if __name__	== '__main__':
 
 	while True:
 		[temp,hum] = dht(temphum_port,0)
-		t=str(temp)
-		h=str(hum)
+		t=str(temp) + " C"
+		h=str(hum) + "%"
 		#print(t+"\t"+h)
 		client.publish(temp_topic,t)
 		client.publish(hum_topic,h)
