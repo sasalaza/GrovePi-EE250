@@ -5,8 +5,8 @@ import sys
 # we are able to successfully `import grovepi`
 sys.path.append('../../Software/Python/')
 import	grovepi
-#from grovepi import *
-#from grove_rgb_lcd import *
+from grovepi import *
+from grove_rgb_lcd import *
 
 # Determines which digital port	the	ultrasonic ranger is plugged into (e.g.	a 
 # value	of 4 would mean	port D4)
