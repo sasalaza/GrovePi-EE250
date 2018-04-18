@@ -17,7 +17,7 @@ else:
 # Determines which digital port	the	ultrasonic ranger is plugged into (e.g.	a 
 # value	of 4 would mean	port D4)
 led_port = 3
-temp_port = 2
+temphum_port = 2
 lcd_port = 7
 
 mqtt_broker_hostname = "eclipse.usc.edu"
@@ -26,6 +26,7 @@ mqtt_broker_port = 11000
 led_topic = "anrg-pi15/led"
 lcd_topic = "anrg-pi15/lcd"
 temp_topic = "anrg-pi15/temp"
+hum_topic = "anrg-pi15/hum"
 
 def	on_connect(client, userdata, flags,	rc):
 	print("Connected to server	(i.e., broker) with	result code	"+str(rc))
@@ -34,23 +35,6 @@ def	on_message(client, userdata, msg):
 	print("on_message:	" +	msg.topic +	" "	+ str(msg.payload, "utf-8"))
 
 if __name__	== '__main__':
-	if	len(sys.argv) != 3:
-		print("expected two arguments")
-		print("Usage example:	`python3 ultrasonic_ranger_publisher.py	-u 2`")
-		sys.exit()
-
-	parser	= argparse.ArgumentParser()
-	parser.add_argument("-u", "--ultrasonicranger",
-		help = "Specify which	ultrasonic ranger to subscribe to (1 or	2)",
-							default = 1)	
-	args =	parser.parse_args()
-
-	distance =	0
-
-	if	args.ultrasonicranger == '1':
-		topic	= ultrasonic_ranger1_topic
-	elif args.ultrasonicranger	== '2':
-		topic	= ultrasonic_ranger2_topic
 
 	client	= mqtt.Client()
 	client.on_message = on_message
@@ -60,13 +44,9 @@ if __name__	== '__main__':
 	client.loop_start()
 
 	while True:
-		if TEST:
-			distance	= (distance	+ 1) % 10
-			time.sleep(0.2)
-		else:
-			#ultrasonicRead() has a 60ms	delay
-			distance	= grovepi.ultrasonicRead(grovepi_digital_port) 
-			time.sleep(0.130)
-
-		print("topic:	" +	topic +	", distance	(cm): "	+ str(distance))
-		client.publish(topic,	distance)
+		[temp,hum] = dht(temphum_port,1)
+		t=str(temp)
+		h=str(hum)
+		print(t+"/t"+h)
+		client.publish(temp_topic,t)
+		client.publish(hum_topic,h)
