@@ -25,8 +25,7 @@ temp_topic = "anrg-pi15/temp"
 hum_topic = "anrg-pi15/hum"
 
 def led_callback(client, userdata, msg):
-	global power_stat 
-	power_stat = msg.payload
+	global power_stat
 	if digitalRead(led_port) == 1:
 		digitalWrite(led_port, 0)
 	else:
@@ -36,8 +35,8 @@ def led_callback(client, userdata, msg):
 def lcd_callback(client, userdata, msg):
 	global mymessage 
 	mymessage = msg.payload
-	setRGB(255,255,255)
 	setText(mymessage)
+	setRGB(255,255,255)
 
 def	on_connect(client, userdata, flags,	rc):
 	print("Connected to server	(i.e., broker) with	result code	"+str(rc))
