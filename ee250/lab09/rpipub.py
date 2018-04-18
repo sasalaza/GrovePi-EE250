@@ -4,13 +4,9 @@ import sys
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are able to successfully `import grovepi`
 sys.path.append('../../Software/Python/')
-
-if TEST:
-	print("Test Mode")
-else:
-	import	grovepi
-	#from grovepi import *
-	#from grove_rgb_lcd import *
+import	grovepi
+#from grovepi import *
+#from grove_rgb_lcd import *
 
 # Determines which digital port	the	ultrasonic ranger is plugged into (e.g.	a 
 # value	of 4 would mean	port D4)
