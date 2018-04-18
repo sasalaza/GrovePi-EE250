@@ -52,10 +52,10 @@ if __name__	== '__main__':
 	client.loop_start()
 
 	while True:
-		[temp,hum] = dht(temphum_port,1)
+		[temp,hum] = dht(temphum_port,0)
 		t=str(temp)
 		h=str(hum)
-		print(t+"/t"+h)
+		print(t+"\t"+h)
 		client.publish(temp_topic,t)
 		client.publish(hum_topic,h)
 		time.sleep(1)
