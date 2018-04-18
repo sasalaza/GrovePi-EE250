@@ -14,7 +14,7 @@ led_port = 3
 temphum_port = 2
 lcd_port = 7
 
-pinmode(led_port, "OUTPUT")
+pinMode(led_port, "OUTPUT")
 
 mqtt_broker_hostname = "eclipse.usc.edu"
 mqtt_broker_port = 11000
