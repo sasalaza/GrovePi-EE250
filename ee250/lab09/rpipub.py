@@ -37,8 +37,8 @@ def led_callback(client, userdata, msg):
 def lcd_callback(client, userdata, msg):
 	global mymessage
 	mymessage = msg.payload
-	setText(mymessage)
-	#setRGB(255,255,255)
+	#setText(mymessage)
+	setRGB(255,255,255)
 
 def	on_connect(client, userdata, flags,	rc):
 	print("Connected to server	(i.e., broker) with	result code	"+str(rc))
